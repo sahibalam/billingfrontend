@@ -435,8 +435,8 @@ async function generatePDF() {
         generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
         generateBtn.disabled = true;
         
-        // Use relative URL since frontend is served from same origin
-        const response = await fetch('/generate-invoice', {
+        // Call deployed AWS Lambda endpoint for invoice PDF generation
+        const response = await fetch('https://396sen1eal.execute-api.ap-south-1.amazonaws.com/generate-invoice', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
