@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator - MUFIZ TRADERS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-file-invoice"></i> MUFIZ TRADERS - Invoice Generator</h1>
+            <p class="subtitle">Generate GST-compliant tax invoices</p>
+        </header>
+
+        <div class="app-container">
+            <div class="sidebar">
+                <div class="business-info">
+                    <h3><i class="fas fa-building"></i> Business Details</h3>
+                    <div class="info-card">
+                        <p><strong>MUFIZ TRADERS</strong></p>
+                        <p>K5/22/A, NEW UTTAR CHAKMIR</p>
+                        <p>FAKIR PARA ROAD</p>
+                        <p>West Bengal, 700142</p>
+                        <p>GSTIN/UIN: 19ACNPA7760L2Z2</p>
+                        <p>State: West Bengal (Code: 19)</p>
+                    </div>
+                    
+                    <div class="bank-info">
+                        <h4><i class="fas fa-university"></i> Bank Details</h4>
+                        <p>PUNJAB NATIONAL BANK</p>
+                        <p>A/c No: 0339250006928</p>
+                        <p>IFSC: PUNB0140600</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <form id="invoiceForm">
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Buyer Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="buyerName">Buyer Name *</label>
+                                <input type="text" id="buyerName" required value="SUPER PADACHHAYA">
+                            </div>
+                            <div class="form-group">
+                                <label for="buyerAddress">Address *</label>
+                                <input type="text" id="buyerAddress" required value="415,D.H. ROAD">
+                            </div>
+                            <div class="form-group">
+                                <label for="buyerCity">City *</label>
+                                <input type="text" id="buyerCity" required value="KOLKATA">
+                            </div>
+                            <div class="form-group">
+                                <label for="buyerPincode">Pincode *</label>
+                                <input type="text" id="buyerPincode" required value="700034">
+                            </div>
+                            <div class="form-group">
+                                <label for="buyerGSTIN">GSTIN/UIN *</label>
+                                <input type="text" id="buyerGSTIN" required value="19AJIPS7735B1ZX">
+                            </div>
+                            <div class="form-group">
+                                <label for="invoiceNumber">Invoice Number *</label>
+                                <input type="text" id="invoiceNumber" required value="$161">
+                            </div>
+                            <div class="form-group">
+                                <label for="invoiceDate">Invoice Date *</label>
+                                <input type="date" id="invoiceDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="orderNumber">Buyer's Order No.</label>
+                                <input type="text" id="orderNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="orderDate">Order Date</label>
+                                <input type="date" id="orderDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-box"></i> Product Details</h3>
+                        <div class="table-container">
+                            <table id="productTable">
+                                <thead>
+                                    <tr>
+                                        <th>Sr.</th>
+                                        <th>Description</th>
+                                        <th>Size</th>
+                                        <th>HSN/SAC</th>
+                                        <th>Quantity (PRS)</th>
+                                        <th>Rate (₹)</th>
+                                        <th>Amount (₹)</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productTableBody">
+                                    <!-- Products will be added here -->
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="8">
+                                            <button type="button" id="addProduct" class="btn-secondary">
+                                                <i class="fas fa-plus"></i> Add Product
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-calculator"></i> Tax Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="cgstRate">CGST Rate (%)</label>
+                                <input type="number" id="cgstRate" step="0.01" value="2.50" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sgstRate">SGST Rate (%)</label>
+                                <input type="number" id="sgstRate" step="0.01" value="2.50" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button type="button" id="previewBtn" class="btn-preview">
+                            <i class="fas fa-eye"></i> Preview Invoice
+                        </button>
+                        <button type="button" id="generatePDF" class="btn-primary">
+                            <i class="fas fa-file-pdf"></i> Generate PDF
+                        </button>
+                        <button type="button" id="resetBtn" class="btn-secondary">
+                            <i class="fas fa-redo"></i> Reset Form
+                        </button>
+                    </div>
+                </form>
+
+                <div id="previewSection" class="preview-section" style="display: none;">
+                    <h3><i class="fas fa-file-pdf"></i> Invoice Preview</h3>
+                    <div id="previewContent" class="preview-content">
+                        <!-- Preview will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 MUFIZ TRADERS | GST Invoice Generator System</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
