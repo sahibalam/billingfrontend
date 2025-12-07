@@ -189,6 +189,8 @@ header h1 {
 }
 
 .table-container {
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     margin-top: 20px;
 }
@@ -450,11 +452,12 @@ footer {
 
     .table-container {
         margin-top: 12px;
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* Allow horizontal scroll for wide tables on small screens */
-    .table-container {
-        -webkit-overflow-scrolling: touch;
+    #productTable,
+    .table-styled {
+        min-width: 650px; /* keep structure; user scrolls horizontally */
     }
 
     #productTable th,
@@ -463,8 +466,7 @@ footer {
     .table-styled td {
         padding: 8px 6px;
         font-size: 11px;
-        white-space: normal;
-        word-break: break-word;
+        white-space: nowrap;
     }
 }
 
