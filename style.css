@@ -92,6 +92,13 @@ header h1 {
     transform: translateY(-1px);
 }
 
+.sidebar a.active-link {
+    background: linear-gradient(to right, #3498db, #2980b9);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.25);
+}
+
 .info-card {
     background: #f8f9fa;
     border-radius: 8px;
