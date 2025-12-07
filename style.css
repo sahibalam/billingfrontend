@@ -455,18 +455,25 @@ footer {
         -webkit-overflow-scrolling: touch;
     }
 
-    #productTable,
-    .table-styled {
-        min-width: 650px; /* keep structure; user scrolls horizontally */
+    /* Only the Product Details table (on invoice page) should scroll horizontally */
+    #productTable {
+        min-width: 650px; /* keep structure; user scrolls horizontally inside container */
     }
 
     #productTable th,
-    #productTable td,
+    #productTable td {
+        padding: 8px 6px;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    /* History table stays flexible within screen width */
     .table-styled th,
     .table-styled td {
         padding: 8px 6px;
         font-size: 11px;
-        white-space: nowrap;
+        white-space: normal;
+        word-break: break-word;
     }
 }
 
