@@ -29,7 +29,7 @@
         <div class="form-section">
           <h3><i class="fas fa-clock-rotate-left"></i> Generated Invoices</h3>
           <div class="table-container">
-            <table id="historyTable">
+            <table id="historyTable" class="table-styled">
               <thead>
                 <tr>
                   <th>Date</th>
@@ -43,7 +43,7 @@
               </thead>
               <tbody id="historyBody">
                 <tr>
-                  <td colspan="6" style="text-align:center;">Loading...</td>
+                  <td colspan="7" style="text-align:center;">Loading...</td>
                 </tr>
               </tbody>
             </table>
@@ -97,11 +97,11 @@
             <td>${inv.invoiceNumber || ''}</td>
             <td>${inv.buyerName || ''}</td>
             <td>${inv.buyerGSTIN || ''}</td>
-            <td style="text-align:right;">${(inv.totalQty ?? '').toString()}</td>
-            <td style="text-align:right;">${(inv.grandTotal ?? '').toString()}</td>
-            <td style="text-align:center;">
-              <a href="${downloadUrl}" target="_blank" rel="noopener">
-                <i class="fas fa-download"></i> Download
+            <td class="numeric">${(inv.totalQty ?? '').toString()}</td>
+            <td class="numeric">${(inv.grandTotal ?? '').toString()}</td>
+            <td class="center">
+              <a href="${downloadUrl}" target="_blank" rel="noopener" class="btn-link-small">
+                <i class="fas fa-download"></i><span>Download</span>
               </a>
             </td>
           `;
