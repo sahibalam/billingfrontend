@@ -48,7 +48,7 @@
                   <th>GSTIN</th>
                   <th>Total Qty</th>
                   <th>Grand Total (₹)</th>
-                  <th>Download</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody id="historyBody">
@@ -110,9 +110,12 @@
             <td class="numeric">${(inv.totalQty ?? '').toString()}</td>
             <td class="numeric">${(inv.grandTotal ?? '').toString()}</td>
             <td class="center">
-              <a href="${downloadUrl}" target="_blank" rel="noopener" class="btn-link-small">
+              <a href="${downloadUrl}" target="_blank" rel="noopener" class="btn-link-small" style="margin-right:6px;">
                 <i class="fas fa-download"></i><span>Download</span>
               </a>
+              <button type="button" class="btn-link-small" style="border-color:#e74c3c; color:#c0392b;" onclick="deleteInvoice('${inv._id}')">
+                <i class="fas fa-trash"></i><span>Delete</span>
+              </button>
             </td>
           `;
           tbody.appendChild(tr);
@@ -120,6 +123,26 @@
       } catch (err) {
         console.error(err);
         tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:red;">Error loading history</td></tr>`;
+      }
+    }
+
+    async function deleteInvoice(id) {
+      if (!confirm('Are you sure you want to delete this invoice?')) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/invoice/${id}`, {
+          method: 'DELETE',
+        });
+
+        if (!res.ok) {
+          alert('Failed to delete invoice');
+          return;
+        }
+
+        await loadHistory();
+      } catch (err) {
+        console.error(err);
+        alert('Error deleting invoice');
       }
     }
 
