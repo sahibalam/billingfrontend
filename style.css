@@ -418,6 +418,52 @@ footer {
     .action-buttons button {
         width: 100%;
     }
+
+    .sidebar {
+        padding: 18px;
+    }
+
+    .sidebar h3 {
+        margin-bottom: 12px;
+    }
+
+    .bank-info,
+    .info-card {
+        margin-bottom: 16px;
+    }
+
+    .sidebar a {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    header h1 {
+        font-size: 22px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .table-container {
+        margin-top: 12px;
+    }
+
+    /* Allow horizontal scroll for wide tables on small screens */
+    .table-container {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #productTable th,
+    #productTable td,
+    .table-styled th,
+    .table-styled td {
+        padding: 10px 8px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
 }
 
 /* Invoice preview styling */
