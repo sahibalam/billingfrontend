@@ -457,7 +457,8 @@ footer {
 
     /* Only the Product Details table (on invoice page) should scroll horizontally */
     #productTable {
-        min-width: 650px; /* keep structure; user scrolls horizontally inside container */
+        width: max-content; /* table defines its own width */
+        min-width: 650px;
     }
 
     #productTable th,
