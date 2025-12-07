@@ -10,6 +10,7 @@ body {
     color: #333;
     line-height: 1.6;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .container {
@@ -460,9 +461,10 @@ footer {
     #productTable td,
     .table-styled th,
     .table-styled td {
-        padding: 10px 8px;
-        font-size: 12px;
-        white-space: nowrap;
+        padding: 8px 6px;
+        font-size: 11px;
+        white-space: normal;
+        word-break: break-word;
     }
 }
 
