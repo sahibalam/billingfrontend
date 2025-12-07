@@ -38,6 +38,7 @@
                   <th>GSTIN</th>
                   <th>Total Qty</th>
                   <th>Grand Total (₹)</th>
+                  <th>Download</th>
                 </tr>
               </thead>
               <tbody id="historyBody">
@@ -71,25 +72,26 @@
 
     async function loadHistory() {
       const tbody = document.getElementById('historyBody');
-      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">Loading...</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;">Loading...</td></tr>`;
 
       try {
         const res = await fetch(`${API_BASE}/invoices`);
         if (!res.ok) {
-          tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:red;">Failed to load history</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:red;">Failed to load history</td></tr>`;
           return;
         }
         const data = await res.json();
         const invoices = Array.isArray(data.invoices) ? data.invoices : [];
 
         if (invoices.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No invoices found yet</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;">No invoices found yet</td></tr>`;
           return;
         }
 
         tbody.innerHTML = '';
         invoices.forEach((inv) => {
           const tr = document.createElement('tr');
+          const downloadUrl = `${API_BASE}/invoice/${inv._id}/pdf`;
           tr.innerHTML = `
             <td>${formatDate(inv.invoiceDate || inv.createdAt)}</td>
             <td>${inv.invoiceNumber || ''}</td>
@@ -97,6 +99,11 @@
             <td>${inv.buyerGSTIN || ''}</td>
             <td style="text-align:right;">${(inv.totalQty ?? '').toString()}</td>
             <td style="text-align:right;">${(inv.grandTotal ?? '').toString()}</td>
+            <td style="text-align:center;">
+              <a href="${downloadUrl}" target="_blank" rel="noopener">
+                <i class="fas fa-download"></i> Download
+              </a>
+            </td>
           `;
           tbody.appendChild(tr);
         });
