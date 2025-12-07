@@ -462,27 +462,21 @@ footer {
         -webkit-overflow-scrolling: touch;
     }
 
-    /* Only the Product Details table (on invoice page) should scroll horizontally */
-    #productTable {
+    /* Product Details and Generated Invoices tables scroll horizontally inside their container */
+    #productTable,
+    .table-styled {
         display: inline-table;
         width: auto;
-        min-width: 650px; /* table a bit wider than screen; scrolls inside container */
+        min-width: 650px; /* a bit wider than screen; scrolls inside container */
     }
 
     #productTable th,
-    #productTable td {
-        padding: 8px 6px;
-        font-size: 11px;
-        white-space: nowrap;
-    }
-
-    /* History table stays flexible within screen width */
+    #productTable td,
     .table-styled th,
     .table-styled td {
         padding: 8px 6px;
         font-size: 11px;
-        white-space: normal;
-        word-break: break-word;
+        white-space: nowrap;
     }
 }
 
