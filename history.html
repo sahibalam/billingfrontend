@@ -102,13 +102,17 @@
         invoices.forEach((inv) => {
           const tr = document.createElement('tr');
           const downloadUrl = `${API_BASE}/invoice/${inv._id}/pdf`;
+          const grandTotalWhole = typeof inv.grandTotal === 'number'
+            ? Math.round(inv.grandTotal)
+            : (inv.grandTotal || '');
+
           tr.innerHTML = `
             <td>${formatDate(inv.invoiceDate || inv.createdAt)}</td>
             <td>${inv.invoiceNumber || ''}</td>
             <td>${inv.buyerName || ''}</td>
             <td>${inv.buyerGSTIN || ''}</td>
             <td class="numeric">${(inv.totalQty ?? '').toString()}</td>
-            <td class="numeric">${(inv.grandTotal ?? '').toString()}</td>
+            <td class="numeric">${grandTotalWhole}</td>
             <td class="center">
               <a href="${downloadUrl}" target="_blank" rel="noopener" class="btn-link-small" style="margin-right:6px;">
                 <i class="fas fa-download"></i><span>Download</span>
