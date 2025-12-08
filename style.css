@@ -43,7 +43,7 @@ header h1 {
 
 .app-container {
     display: grid;
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 200px 1fr;
     gap: 30px;
 }
 
@@ -286,7 +286,7 @@ header h1 {
 }
 
 #productTable td {
-    padding: 12px 15px;
+    padding: 0;
     border-bottom: 1px solid #eee;
 }
 
