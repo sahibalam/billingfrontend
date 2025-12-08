@@ -52,13 +52,18 @@ function addProductRow(productData = {}) {
     const row = document.createElement('tr');
     const srNo = productCounter++;
     
+    const initialMrp = productData.mrp || productData.rate || '';
+    const initialDiscount = productData.discount || 0;
+
     row.innerHTML = `
         <td>${srNo}</td>
         <td><input type="text" class="calc-input" value="${productData.description || ''}" placeholder="Product code" style="width: 90%;"></td>
         <td><input type="text" class="calc-input" value="${productData.size || ''}" placeholder="Size" style="width: 90%;"></td>
         <td><input type="text" class="calc-input" value="${productData.hsn || '640220'}" placeholder="HSN Code" style="width: 90%;"></td>
         <td><input type="number" class="calc-input qty" step="0.01" value="${productData.quantity || ''}" placeholder="Qty" style="width: 90%;"></td>
-        <td><input type="number" class="calc-input rate" step="0.01" value="${productData.rate || ''}" placeholder="Rate" style="width: 90%;"></td>
+        <td><input type="number" class="calc-input mrp" step="0.01" value="${initialMrp}" placeholder="MRP" style="width: 90%;"></td>
+        <td><input type="number" class="calc-input discount" step="0.01" value="${initialDiscount}" placeholder="Discount %" style="width: 90%;"></td>
+        <td><input type="number" class="calc-input rate" step="0.01" value="${productData.rate || ''}" placeholder="Rate" style="width: 90%;" readonly></td>
         <td><input type="number" class="amount" readonly value="0" style="width: 90%;"></td>
         <td><button type="button" class="btn-action remove-row"><i class="fas fa-trash"></i></button></td>
     `;
@@ -77,10 +82,19 @@ function addProductRow(productData = {}) {
 }
 
 function calculateRow(row) {
-    const qty = parseFloat(row.querySelector('.qty').value) || 0;
-    const rate = parseFloat(row.querySelector('.rate').value) || 0;
+    const qty = parseFloat(row.querySelector('.qty')?.value) || 0;
+    const mrp = parseFloat(row.querySelector('.mrp')?.value) || 0;
+    const discount = parseFloat(row.querySelector('.discount')?.value) || 0;
+
+    // Calculate rate based on MRP and discount: Rate = MRP - (discount% of MRP)
+    let rate = parseFloat(row.querySelector('.rate')?.value) || 0;
+    if (mrp > 0) {
+        const effectiveDiscount = isNaN(discount) ? 0 : discount;
+        rate = mrp - (mrp * (effectiveDiscount / 100));
+        row.querySelector('.rate').value = rate.toFixed(2);
+    }
+
     const amount = qty * rate;
-    
     row.querySelector('.amount').value = amount.toFixed(2);
 }
 
