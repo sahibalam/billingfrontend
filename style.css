@@ -43,14 +43,14 @@ header h1 {
 
 .app-container {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 260px 1fr;
     gap: 30px;
 }
 
 .sidebar {
     background: white;
     border-radius: 10px;
-    padding: 25px;
+    padding: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     height: fit-content;
 }
